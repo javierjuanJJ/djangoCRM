@@ -3,11 +3,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 from website.forms import SignUpForm
+from .models import *
 
 
 # Create your views here.
 def home(request):
-
+    records = Record.objects.all()
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -22,7 +23,7 @@ def home(request):
     else:
         pass
 
-    return render(request, 'home.html',{})
+    return render(request, 'home.html',{'records': records})
 
 def login_user(request):
     pass
